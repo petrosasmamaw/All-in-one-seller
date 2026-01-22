@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchChatsBySellerId } from "../Slice/chatSlice";
+import { fetchChatsBySellerId, deleteChat } from "../Slice/chatSlice";
 
 const Chat = ({ userId }) => {
   const dispatch = useDispatch();
@@ -41,19 +41,31 @@ const Chat = ({ userId }) => {
           {unique.map((chat) => {
             const last = chat.messages && chat.messages.length ? chat.messages[chat.messages.length - 1] : null;
             return (
-              <Link
-                to={`/chats/${chat.itemId}/${chat.clientId}/${chat.sellerId}`}
-                className="chat-item"
-                key={chat._id}
-              >
-                <div className="chat-item-left">
-                  <div className="chat-item-title">Item: {chat.itemId}</div>
-                  <div className="chat-item-sub">Client: {chat.clientId}</div>
-                </div>
-                <div className="chat-item-right">
-                  <div className="chat-item-last">{last ? last.text : "Start conversation"}</div>
-                </div>
-              </Link>
+              <div className="chat-item" key={chat._id}>
+                <Link
+                  to={`/chats/${chat.itemId}/${chat.clientId}/${chat.sellerId}`}
+                  className="chat-item-link"
+                >
+                  <div className="chat-item-left">
+                    <div className="chat-item-title">Item: {chat.itemId}</div>
+                    <div className="chat-item-sub">Client: {chat.clientId}</div>
+                  </div>
+                  <div className="chat-item-right">
+                    <div className="chat-item-last">{last ? last.text : "Start conversation"}</div>
+                  </div>
+                </Link>
+                <button
+                  className="delete-chat-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (window.confirm("Are you sure you want to delete this chat?")) {
+                      dispatch(deleteChat(chat._id));
+                    }
+                  }}
+                >
+                  🗑️
+                </button>
+              </div>
             );
           })}
         </div>
