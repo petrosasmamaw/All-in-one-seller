@@ -36,7 +36,7 @@ const SellerFooter = () => {
           <h4>Contact</h4>
           <ul>
             <li><FaEnvelope /> admin@mymarket.com</li>
-            <li><FaPhoneAlt /> +251 9XX XXX XXX</li>
+            <li><FaPhoneAlt /> +251 9XXXXXXXX</li>
             <li><FaMapMarkerAlt /> Ethiopia, Bahir Dar</li>
           </ul>
         </div>
