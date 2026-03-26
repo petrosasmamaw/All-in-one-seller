@@ -52,7 +52,7 @@ const ChatDetail = ({ userId }) => {
               </div>
             ))
           ) : (
-            <div className="empty-chat">No messages yet.. Start the conversation below.</div>
+            <div className="empty-chat">No messages yet.. Start the conversation below!</div>
           )}
         </div>
 
